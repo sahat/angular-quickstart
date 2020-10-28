@@ -462,7 +462,7 @@ List of Packages
 | lusca                           | CSRF middleware.                                                        |
 | mailchecker                     | Verifies that an email address is valid and not a disposable address.   |
 | mocha                           | Test framework.                                                         |
-| moment                          | Parse, validate, compute dates and times.                               |
+| date-fns                        | Parse, validate, compute dates and times.                               |
 | mongoose                        | MongoDB ODM.                                                            |
 | morgan                          | HTTP request logger middleware for node.js.                             |
 | multer                          | Node.js middleware for handling `multipart/form-data`.                  |
@@ -1153,8 +1153,10 @@ class Person {
 Math.floor(Date.now() / 1000);
 ```
 
-```MomentJS
-moment().unix();
+```date-fns
+import { getUnixTime } from 'date-fns'
+
+getUnixTime(new Date())
 ```
 
 #### Add 30 minutes to a Date object
@@ -1164,8 +1166,10 @@ var now = new Date();
 now.setMinutes(now.getMinutes() + 30);
 ```
 
-```MomentJS
-moment().add(30, 'minutes');
+```date-fns
+import { add } from 'date-fns'
+
+add(new Date(), { minutes: 30 });
 ```
 
 #### Date Formatting
@@ -1188,8 +1192,11 @@ if (MM < 10) {
 
 console.log(MM + '-' + DD + '-' + YYYY); // 03-30-2016
 ```
-```MomentJS
-console.log(moment(new Date(), 'MM-DD-YYYY'));
+
+```date-fns
+import { format } from 'date-fns'
+
+console.log(format(new Date(), 'MM-dd-yyyy'));
 ```
 
 ```js
@@ -1206,8 +1213,10 @@ minutes = minutes < 10 ? '0' + minutes : minutes;
 console.log(hours + ':' + minutes + ' ' + amPm); // 1:43 am
 ```
 
-```MomentJS
-console.log(moment(new Date(), 'hh:mm A'));
+```date-fns
+import { format } from 'date-fns'
+
+console.log(format(new Date(), 'hh:mm a')); // 03:11 PM
 ```
 
 #### Next week Date object
@@ -1217,8 +1226,10 @@ var today = new Date();
 var nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
 ```
 
-```MomentJS
-moment().add(7, 'days');
+```date-fns
+import { add } from 'date-fns'
+
+add(new Date(), { days: 7 });
 ```
 
 #### Yesterday Date object
@@ -1228,8 +1239,10 @@ var today = new Date();
 var yesterday = date.setDate(date.getDate() - 1);
 ```
 
-```MomentJS
-moment().add(-1, 'days');
+```date-fns
+import { add } from 'date-fns'
+
+add(new Date(), { days: -1 });
 ```
 
 :top: <sub>[**back to top**](#table-of-contents)</sub>
